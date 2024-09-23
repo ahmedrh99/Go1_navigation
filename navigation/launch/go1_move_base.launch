@@ -1,0 +1,49 @@
+<launch>
+  <!-- 设置参数，机器狗控制指令的 topic -->
+  <arg name="cmd_vel_topic" default="cmd_vel" />
+
+  <!-- 设置参数，机器狗里程计的 topic -->
+  <arg name="odom_topic" default="/lio_sam/mapping/odometry" />
+  
+
+  <arg name="odom_frame_id" default="odom" />
+	
+  <arg name="base_frame_id" default="base_link" />
+  <arg name="global_frame_id" default="map" />
+
+
+  <!--- Run AMCL --> 
+  <include file="$(find amcl)/examples/amcl_omni.launch" > 
+     <!-- <param name="transform_publish_period" value="0.1" />--> 
+      <param name="base_frame_id" value="base_link"/>  
+      <param name="global_frame_id" value="map"/>
+      <param name="laser_frame_id" value="velodyne"/>
+  </include>
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find navigation)/config/go1/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+    <rosparam file="$(find navigation)/config/go1/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find navigation)/config/go1/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find navigation)/config/go1/global_costmap_params.yaml" command="load" /> 
+    <rosparam file="$(find navigation)/config/go1/base_local_planner_params.yaml" command="load" />
+
+    <!-- for using teb_local_planner -->
+    <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+    <param name="controller_frequency" value="10.0" />
+       
+    <param name="global_costmap/global_frame" value="$(arg global_frame_id)" />
+    <param name="global_costmap/robot_base_frame" value="$(arg base_frame_id)" />
+    <param name="local_costmap/global_frame" value="$(arg odom_frame_id)" />
+    <param name="local_costmap/robot_base_frame" value="$(arg base_frame_id)" />
+   <!-- <param name="base_global_planner" type="string" value="navfn/NavfnROS" />-->
+    <!-- <param name="DWAPlannerROS/global_frame_id" value="$(arg global_frame_id)" />-->
+    
+
+    <!-- 将一些 topic 映射到 另一些 topic -->
+    <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+    <remap from="odom" to="$(arg odom_topic)"/>
+    <remap from="move_base_simple/goal" to="goal"/>
+
+  </node>
+
+</launch> 

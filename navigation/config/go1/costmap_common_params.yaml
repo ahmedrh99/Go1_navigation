@@ -1,0 +1,18 @@
+obstacle_range: 2.5 # the maximum range sensor reading that will result in an obstacle being put into the costmap
+raytrace_range: 5.0 # was 5 the range to which we will raytrace freespace given a sensor reading.
+footprint: [[0.30, 0.16], [0.30, -0.16], [-0.30, -0.16], [-0.30, 0.16]] 
+#robot_radius: ir_of_robot
+inflation_radius: 0.4 # The inflation radius should be set to the maximum distance from obstacles at which a cost should be incurred.
+
+# The "observation_sources" parameter defines a list of sensors that are going to be passing information to the costmap separated by spaces. 
+observation_sources: laser_scan_sensor #point_cloud_sensor
+
+laser_scan_sensor: {sensor_frame: base_link, data_type: PointCloud2, topic: /points_raw, marking: true, clearing: true}
+#frame was base_link data type LaserScan topic /scan 
+#   point_cloud_sensor: {sensor_frame: base_link, data_type: PointCloud, topic: "/realsense_2_laserscan/cloud", marking: true, clearing: true}
+
+
+
+
+
+

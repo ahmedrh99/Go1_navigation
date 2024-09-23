@@ -1,0 +1,15 @@
+<launch>
+
+  <arg name="map_file" default="/home/maps/gmapping/map_test.yaml"/>
+
+
+  <arg name="odom_topic" default="/localization/odom"/>
+
+
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <include file="$(find navigation)/launch/go1_move_base.launch">
+    <arg name="odom_topic" value="$(arg odom_topic)"/>
+  </include>
+</launch>
+  

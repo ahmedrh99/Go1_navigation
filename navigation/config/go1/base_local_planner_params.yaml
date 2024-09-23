@@ -1,0 +1,180 @@
+TrajectoryPlannerROS:
+  # 1. Robot Configuration Parameters
+  max_vel_x: 3.0      # (double, default: 0.5) The maximum forward velocity allowed for the base in meters/sec
+  min_vel_x: 0.1      # (double, default: 0.1) The minimum forward velocity allowed for the base in meters/sec. 
+          # It is useful to specify this to guarantee that velocity commands sent to a mobile base 
+          # are high enough to allow the base to overcome friction.
+
+  max_vel_theta: 3.0  # The maximum rotational velocity allowed for the base in radians/sec
+  min_vel_theta: -3.0 # The minimum rotational velocity allowed for the base in radians/sec
+  min_in_place_vel_theta: 0.5 # The minimum rotational velocity allowed for the base while performing in-place rotations in radians/sec
+  
+  escape_vel: -0.15   #  Speed used for driving during escapes in meters/sec. 
+          # Note that it must be negative in order for the robot to actually reverse. 
+
+  acc_lim_theta: 3.2  # (double, default: 3.2) The rotational acceleration limit of the robot in radians/sec^2
+  acc_lim_x: 2.5  # (double, default: 2.5) The x acceleration limit of the robot in meters/sec^2
+  acc_lim_y: 2.5  # (double, default: 2.5) The y acceleration limit of the robot in meters/sec^2
+
+  holonomic_robot: true # Determines whether velocity commands are generated for a holonomic or non-holonomic robot.
+
+  y_vels: [-0.4, -0.2, 0.2, 0.4] # list, default: [-0.3, -0.1, 0.1, 0.3])
+          # The strafing velocities that a holonomic robot will consider in meters/sec
+
+  # 2. Goal Tolerance Parameters
+  yaw_goal_tolerance: 0.05 # (double, default: 0.05) The tolerance in radians for the controller in yaw/rotation when achieving its goal
+  xy_goal_tolerance:  0.10 # (double, default: 0.10) The tolerance in meters for the controller in the x & y distance when achieving a goal
+  latch_xy_goal_tolerance: false # (bool, default: false) If goal tolerance is latched, 
+          # if the robot ever reaches the goal xy location it will simply rotate in place, 
+          # even if it ends up outside the goal tolerance while it is doing so.
+
+  # 3. Forward Simulation Parameters
+  sim_time: 1.0 # (double, default: 1.0) The amount of time to forward-simulate trajectories in seconds
+  sim_granularity: 0.025 # (double, default: 0.025) The step size, in meters, to take between points on a given trajectory
+  
+  # angular_sim_granularity: # (double, default: ~<name>/sim_granularity) The step size, in radians, 
+          # to take between angular samples on a given trajectory.
+  
+  vx_samples: 5 # (integer, default: 3) The number of samples to use when exploring the x velocity space
+  vtheta_samples: 20 # (integer, default: 20) The number of samples to use when exploring the theta velocity space
+  controller_frequency: 20.0 # (double, default: 20.0) The frequency at which this controller will be called in Hz. 
+
+  # 4. Trajectory Scoring Parameters
+  # meter_scoring: false # (bool, default: false) Whether the gdist_scale and pdist_scale parameters 
+          # should assume that goal_distance and path_distance are expressed in units of meters or cells. 
+          # Cells are assumed by default.
+  pdist_scale:  0.6 # (double, default: 0.6)
+          # The weighting for how much the controller should stay close to the path it was given, 
+          # maximal possible value is 5.0
+  gdist_scale: 0.8 # (double, default: 0.8) 
+          # The weighting for how much the controller should attempt to reach its local goal, 
+          # also controls speed, maximal possible value is 5.0
+  occdist_scale: 0.01 # (double, default: 0.01) The weighting for how much the controller should attempt to avoid obstacles
+  heading_lookahead: 0.325 # (double, default: 0.325) How far to look ahead in meters when scoring different in-place-rotation trajectories
+  heading_scoring: false # (bool, default: false) Whether to score based on the robot's heading to the path or its distance from the path
+  heading_scoring_timestep: 0.8 # (double, default: 0.8) How far to look ahead in time in seconds 
+          # along the simulated trajectory when using heading scoring
+  
+  dwa: false # (bool, default: true) Whether to use the Dynamic Window Approach (DWA)_ or 
+          # whether to use Trajectory Rollout 
+          # (NOTE: In our experience DWA worked as well as Trajectory Rollout and is computationally less expensive. 
+          # It is possible that robots with extremely poor acceleration limits could gain from running Trajectory Rollout, 
+          # but we recommend trying DWA first.)
+  
+  publish_cost_grid_pc: false #(bool, default: false) Whether or not to publish the cost grid that the planner will use when planning. 
+          # When true, a sensor_msgs/PointCloud2 will be available on the ~<name>/cost_cloud topic. 
+          # Each point cloud represents the cost grid and has a field for each individual scoring function component 
+          # as well as the overall cost for each cell, taking the scoring parameters into account.
+  global_frame_id: odom # (string, default: odom) 
+          # The frame to set for the cost_cloud. Should be set to the same frame as the local costmap's global frame. 
+
+  # 5. Oscillation Prevention Parameters
+  oscillation_reset_dist: 0.05 # (double, default: 0.05) How far the robot must travel in meters before oscillation flags are reset.
+
+  # 6. Global Plan Parameters
+  prune_plan: true # (bool, default: true) Defines whether or not to eat up the plan as the robot moves along the path. 
+      # If set to true, points will fall off the end of the plan once the robot moves 1 meter past them.
+
+
+
+
+TebLocalPlannerROS:
+
+  
+        
+  include_dynamic_obstacles: true     # Set to true to consider dynamic obstacles
+  dynamic_obstacle_inflation_dist: 0.1 # was 0.6 Minimum distance from dynamic obstacles
+  dynamic_obstacle_prediction_time: 1.0 # was 1.5 Prediction horizon for dynamic obstacle motion (in seconds)
+  consider_velocity_obstacles: true   # Set       
+        
+        
+        
+        
+  selection_alternative_time_cost: true  # Updated paramete
+
+  odom_topic: odom
+  map_frame: odom
+  #was odom odom
+  # 1. Trajectory
+  teb_autosize: True
+  dt_ref: 0.3
+  dt_hysteresis: 0.1
+  global_plan_overwrite_orientation: True
+  max_global_plan_lookahead_dist: 3.0
+  feasibility_check_no_poses: 5
+    
+  # 2. Robot    
+  max_vel_x: 3.0        # was 0.75 double, default: 0.4) Maximum translational velocity of the robot in meters/sec
+  max_vel_y: 0.1         # (double, default: 0.0) Maximum strafing velocity of the robot (should be zero for non-holonomic robots!)
+  max_vel_x_backwards: 0.5      #was 0.2 (double, default: 0.2) Maximum absolute translational velocity of the robot while driving backwards in meters/sec.
+  max_vel_theta: 2.0    # (double, default: 0.3) Maximum angular velocity of the robot in radians/sec
+
+  acc_lim_x: 1.0        # was 0.5 (double, default: 0.5) Maximum translational acceleration of the robot in meters/sec^2
+  acc_lim_y: 0.5 # (double, default: 0.5) Maximum strafing acceleration of the robot
+  acc_lim_theta: 1.5   # (double, default: 0.5) Maximum angular acceleration of the robot in radians/sec^2
+  min_turning_radius: 0.0       # (double, default: 0.0)
+                                # Minimum turning radius of a carlike robot (set to zero for a diff-drive robot).
+  
+  footprint_model: # types: "point", "circular", "two_circles", "line", "polygon"
+    type: "polygon"
+    radius: 0.20                 # for type "circular"
+    line_start: [-0.2, 0.0]     # for type "line"
+    line_end: [0.2, 0.0]        # for type "line"
+    front_offset: 0.2           # for type "two_circles"
+    front_radius: 0.2           # for type "two_circles"
+    rear_offset: 0.2            # for type "two_circles"
+    rear_radius: 0.2            # for type "two_circles"
+    vertices: [[0.30, 0.16], [0.30, -0.16], [-0.30, -0.16], [-0.30, 0.16]] 
+                                # for type "polygon"
+  
+  # 3. Goal Tolerance Parameters
+  xy_goal_tolerance: 0.05        # (double, default: 0.2) Allowed final euclidean distance to the goal position in meters
+  yaw_goal_tolerance: 0.05       # (double, default: 0.2) Allowed final orientation error in radians
+  free_goal_vel: False          # (bool, default: false) Remove the goal velocity constraint such that the robot can arrive at the goal with maximum speed
+    
+  # 4. Obstacles Parameters
+  min_obstacle_dist: 0.2        # (double, default: 0.5) Minimum desired separation from obstacles in meters
+  include_costmap_obstacles: True       # (bool, default: true)
+                                        # Specify if obstacles of the local costmap should be taken into account. 
+                                        # Each cell that is marked as obstacle is considered as a point-obstacle. 
+                                        # Therefore do not choose a very small resolution of the costmap since it increases computation time.
+  costmap_obstacles_behind_robot_dist: 1.0      #  (double, default: 1.0) Limit the occupied local costmap obstacles 
+                                                # taken into account for planning behind the robot (specify distance in meters).
+  obstacle_poses_affected: 30   #  (int, default: 30) Each obstacle position is attached to the closest pose 
+                                # on the trajectory in order to keep a distance. Additional neighbors can be taken into account as well.
+  costmap_converter_plugin: ""
+  costmap_converter_spin_thread: True
+  costmap_converter_rate: 5     # Rate that defines how often the costmap_converter plugin processes the current costmap (the value should not be much higher than the costmap update rate
+
+
+  # 5. Optimization
+  no_inner_iterations: 5
+  no_outer_iterations: 4
+  optimization_activate: True
+  optimization_verbose: False
+  penalty_epsilon: 0.1
+  weight_max_vel_x: 2
+  weight_max_vel_theta: 1
+  weight_acc_lim_x: 1
+  weight_acc_lim_theta: 1
+  weight_kinematics_nh: 1    # weight_kinematics_nh specifies the weight for satisfying the non-holonomic constraint 
+                                # by the optimizer and is usually set to a high value for non-holonomic robots
+  weight_kinematics_forward_drive: 1
+  weight_kinematics_turning_radius: 1
+  weight_optimaltime: 1
+  weight_obstacle: 50
+  weight_dynamic_obstacle: 10 # not in use yet
+  alternative_time_cost: False # not in use yet
+
+  # 6. Homotopy Class Planner
+  enable_homotopy_class_planning: True
+  enable_multithreading: True
+  simple_exploration: False
+  max_number_classes: 4
+  roadmap_graph_no_samples: 15
+  roadmap_graph_area_width: 5
+  h_signature_prescaler: 0.5
+  h_signature_threshold: 0.1
+  obstacle_keypoint_offset: 0.1
+  obstacle_heading_threshold: 0.45
+  visualize_hc_graph: False

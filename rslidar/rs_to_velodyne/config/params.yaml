@@ -1,0 +1,52 @@
+# AMCL parameters
+amcl:
+
+  # Frames
+  base_frame_id: "base_link"         # Frame id of the robot base
+  odom_frame_id: "odom"              # Frame id of the odometry data
+  global_frame_id: "map"             # Global frame id
+  resample_interval: 1               # Number of filter updates before resampling
+  transform_tolerance: 0.1           # Tolerance on the published transform in seconds
+  recovery_alpha_slow: 0.001         # How slow is the update for the slow average weight filter
+  recovery_alpha_fast: 0.1           # How fast is the update for the fast average weight filter
+
+  # Motion model parameters
+  odom_alpha1: 0.2                   # Rotation noise
+  odom_alpha2: 0.2                   # Translation noise
+  odom_alpha3: 0.2                   # Rotation noise
+  odom_alpha4: 0.2                   # Translation noise
+
+  # Laser model parameters
+  laser_max_beams: 60                # Maximum number of beams to consider
+  laser_min_range: 0.2               # Minimum range to consider for laser
+  laser_max_range: 30.0              # Maximum range to consider for laser
+  laser_model_type: "likelihood_field"  # Model type: likelihood_field, beam, likelihood_field_prob
+
+  # Initial pose parameters
+  initial_pose_x: 0.0                # Initial x position of the robot
+  initial_pose_y: 0.0                # Initial y position of the robot
+  initial_pose_a: 0.0                # Initial angle of the robot
+
+  # Initial covariance parameters
+  initial_cov_xx: 0.5                # Initial covariance in x direction
+  initial_cov_yy: 0.5                # Initial covariance in y direction
+  initial_cov_aa: 0.2                # Initial covariance in yaw
+
+  # Particle filter parameters
+  min_particles: 100                 # Minimum number of particles
+  max_particles: 5000                # Maximum number of particles
+  kld_err: 0.05                      # Maximum allowed error in the KLD sampling
+  kld_z: 0.99                        # Required confidence in the KLD sampling
+
+  # Update control
+  update_min_d: 0.2                  # Minimum travel distance (meters) before performing an update
+  update_min_a: 0.1                  # Minimum travel angle (radians) before performing an update
+
+  # Laser scan topic
+  laser_scan_topic: "/scan"           # Topic for incoming laser scans
+
+  # AMCL map update control
+  update_map: true                   # Should we update the map? Usually true for localization.
+  laser_likelihood_max_dist: 2.0     # Maximum distance for computing scan likelihood
+  use_map_topic: true  
+  update_map: "/map"  

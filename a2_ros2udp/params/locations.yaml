@@ -1,0 +1,331 @@
+locations:
+Home:
+  header:
+    frame_id: "map"  # Change this to the appropriate frame ID for your setup
+  pose:
+    position:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+
+Lab_B:
+  header:
+    frame_id: "map"  # Change this to the appropriate frame ID for your setup
+  pose:
+    position:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.707
+      w: 0.707
+
+Elevators: 
+  header: 
+    frame_id: "map"
+  pose: 
+    position: 
+      x: 1.9385878937846293
+      y: 2.1246296956039283
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.7146133418914375
+      w: 0.6995196720541542
+
+Office_room:
+  header: 
+    frame_id: "map" 
+  pose: 
+    position: 
+      x: 7.773929728068538
+      y: 2.4380358990519597
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: -0.5322863184848045
+      w: 0.8465643951607541
+
+besprechungsraum:
+  header: 
+   frame_id: "map" 
+  pose: 
+    position: 
+      x: 11.568650172732342
+      y: 2.5860702045312265
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: -0.7386562190124808
+      w: 0.674082331851374
+
+electronic_lab:
+  header: 
+    frame_id: "map"
+  pose: 
+    position: 
+      x: 15.061061191993192
+      y: 2.589286814642273
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.7652391414056295
+      w: 0.643746111802452
+
+
+Frau_cinja_schwiedel:
+  header: 
+    frame_id: "map" 
+  pose: 
+    position: 
+      x: 18.738747334170505
+      y: 2.9192523313291776
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: -0.6719496000819846
+      w: 0.7405968774911632
+
+frau_marion_muller:
+  header: 
+    frame_id: "map" 
+  pose: 
+    position: 
+      x: 21.794870712503926
+      y: 2.90859453124445
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: -0.5037466237722202
+      w: 0.8638514565815637
+   
+m_weyrich:
+  header:
+    frame_id: "map"
+  pose:
+    position:
+      x: 21.794870712503926
+      y: 2.90859453124445
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: -0.5037466237722202
+      w: 0.8638514565815637
+
+
+
+Nasser_jazdi:
+  header: 
+    frame_id: "map" 
+  pose: 
+    position: 
+      x: 21.598414986475184
+      y: 3.3480715726999986
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.5141432086929505
+      w: 0.8577043552150806
+
+bathrooms:
+  header: 
+    frame_id: "map"
+  pose: 
+    position: 
+      x: 6.5746244719152385
+      y: 8.03485535723043
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.9936546329330208
+      w: 0.11247431018123107
+
+
+
+frau_britta_lenz:
+  header: 
+    frame_id: "map" 
+  pose: 
+    position: 
+      x: 6.6514321484203265
+      y: 13.442166738472864
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.06801228201224664
+      w: 0.9976844839404323
+
+
+
+frau_bek:
+  header:
+    frame_id: "map"
+  pose:
+    position:
+      x: 6.6514321484203265
+      y: 13.442166738472864
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.06801228201224664
+      w: 0.9976844839404323
+
+
+
+
+frederike_bodenstein:
+  header: 
+    frame_id: "map" 
+  pose: 
+    position: 
+      x: 6.692753600404113
+      y: 17.01566901502573
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: -0.007554872340990796
+      w: 0.9999714615447339
+
+
+industrie_lab:
+  header: 
+    frame_id: "map" 
+  pose: 
+    position: 
+      x: 6.286008899606409
+      y: 16.18387443356031
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.9596991289672137
+      w: 0.28102950353934636
+
+
+
+baran_can_gul:
+  header: 
+    frame_id: "map" 
+  pose: 
+    position: 
+      x: 6.327707022894281
+      y: 20.407996877275533
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.12631415232082102
+      w: 0.9919902897324512
+
+
+
+prozess_lab:
+  header: 
+    frame_id: "map" 
+  pose: 
+    position: 
+      x: 5.887505588403497
+      y: 19.677406908541432
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.9153783348258706
+      w: 0.4025947144851957
+
+
+frau_ghasemi:
+  header: 
+    frame_id: "map" 
+  pose: 
+    position: 
+      x: 6.504866618888639
+      y: 23.237621582820637
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.41893354767119667
+      w: 0.9080168955672715
+
+
+frau_atefe_ahmadi:
+  header: 
+    frame_id: "map" 
+  pose: 
+    position: 
+      x: 6.216929396591974
+      y: 26.76392963213761
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.40609184789332486
+      w: 0.9138322663785651
+
+
+
+herr_Jonas_takacks:
+  header:
+    frame_id: "map"
+  pose:
+    position:
+      x: 6.216929396591974
+      y: 26.76392963213761
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.40609184789332486
+      w: 0.9138322663785651
+
+
+
+prof_morozov:
+  header: 
+    frame_id: "map" 
+  pose: 
+    position: 
+      x: 5.87756903595171
+      y: 30.586488106388863
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.39673967343078975
+      w: 0.9179311692747067
+
+
+
+prozesslabor:
+  header: 
+    frame_id: "map" 
+  pose: 
+    position: 
+      x: 5.218575173569587
+      y: 30.34931830727967
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.97424226771066
+      w: 0.22550388867154958

@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<launch>
+  
+
+    <!-- Map Server Arguments -->
+  <arg name="map_file" default="$(find start)/maps/gmapping/map_test1.yaml"/>
+
+  <!-- <arg name="map_file" default="$(find turtlebot_tutorials)/maps/map1.yaml"/> -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+
+
+
+  <rosparam file="$(find lio_sam)/config/params.yaml" command="load" />
+  <!-- Parameters -->
+  <include file="$(find lio_sam)/launch/include/module_loam.launch" />
+
+
+  <!-- Robot State TF -->
+  <include file="$(find lio_sam)/launch/include/module_robot_state_publisher_go1_rshelios16p.launch">
+    <param name="publish_frequency" type="double" value="60.0"/>
+  </include>
+
+
+  <!-- Run RoboSense lidar -->
+  <include file="$(find rslidar_sdk)/launch/start_for_unitree_lidar_slam_3d.launch"/>
+
+
+  <!-- Run a2_ros2udp -->
+    <node pkg="a2_ros2udp" type="ros_control" name="dog_control_node" output="screen">
+    <param name="is_build_map" value="false"/>
+    <!--<param name="patrol_points_file" value="$(find start)/maps/gmapping/map_test1_patrol_points.txt"/>-->
+    </node>
+
+
+    <include file="$(find navigation)/launch/go1_move_base.launch">
+            <!-- <arg name="odom_topic" value="/lio_sam/mapping/odometry"/>-->
+            <arg name="cmd_vel_topic" default="cmd_vel" />
+    </include>
+
+
+</launch>
+

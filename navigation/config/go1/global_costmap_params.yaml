@@ -1,0 +1,18 @@
+global_costmap:
+  global_frame: "map"  #  coordinate frame the costmap should run in
+  robot_base_frame: "base_link" # the coordinate frame the costmap should reference for the base of the robot.
+  update_frequency: 5.0
+  static_map: true  # whether or not the costmap should initialize itself based on a map served by the map_server.
+  rolling_window: false
+  track_unknown_space: true
+
+
+  # plugins:
+  # - {name: static_layer, type: "costmap_2d::StaticLayer"}
+  # - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+  # - {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"}  # Uses the obstacle settings from common
+
+      # inflation_layer:
+          #enabled: true
+    #inflation_radius: 0.55  # How far obstacles are inflated for safety margin
+    #  cost_scaling_factor: 10.0  # Rate of cost decay away from obstacles 
