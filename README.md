@@ -7,4 +7,4 @@ roslaunch start navigate.launch
 ```
 rosrun a2_ros2udp goal_sender.py
 ```
-the node sends command based on the locations.yaml file located in /a2_ros2udp/params/ 
+## the node sends command based on the locations.yaml file located in /a2_ros2udp/params/ 
