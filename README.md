@@ -1,5 +1,6 @@
 ## To start the robot navigation run the following 
 
+cd into
 ```bash
 roslaunch start navigate.launch 
 ```
