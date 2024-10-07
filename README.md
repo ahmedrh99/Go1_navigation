@@ -1,5 +1,6 @@
 ## all code is supposed to run from the robot itself
-## To start the robot navigation run the following 
+please make sure the robot is in the designated initial position
+## To start the robot navigation, run the following 
 
 ssh into into the jetson nano 15, 
 ```bash
@@ -23,7 +24,8 @@ launch the navigate launch file
 ```bash
 roslaunch start navigate.launch 
 ```
-## in another terminal ssh into jetson 15 also, source the bash file and export the ROSMASTER as mentioned above and run the node for sending the goal positions
+## in another terminal ssh into jetson 15, source the bash file and export the ROSMASTER as mentioned above. 
+finally run the node for sending the goal positions
 ```
 rosrun a2_ros2udp goal_sender.py
 ```
