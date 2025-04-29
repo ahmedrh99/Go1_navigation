@@ -1,6 +1,7 @@
 # Navigation
 ## all code is supposed to run from the robot itself
 please make sure the robot is in the designated initial position
+(note: the positions and orientations of office locations were manually registered)
 ## To start the robot navigation, run the following 
 
 ssh into into the jetson nano 15, 
