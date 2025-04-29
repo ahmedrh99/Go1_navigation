@@ -31,3 +31,12 @@ finally run the node for sending the goal positions
 rosrun a2_ros2udp goal_sender.py
 ```
 ## the node sends command based on the locations.yaml file located in in the src folder under /a2_ros2udp/params/ 
+# Mapping 
+## To run mapping navigate to lio_sam/launch/
+```bash
+roslaunch run.launch
+```
+# or navigate to start/launch/
+```bash 
+roslaunch build_map.launch
+```
